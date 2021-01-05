@@ -10,10 +10,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params.require(:user).permit(:name, :email, :age, :introduction ,:diary, :enddate ))
-    if check_box = 1
+    if email = 1
       puts "○"
     else
-      puts ""
+      puts "none"
     end
 
     if @user.save
