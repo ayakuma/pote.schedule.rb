@@ -9,8 +9,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:name, :email, :age, :introduction ,:diary, :enddate ))
-    if email = 1
+    @user = User.new(params.require(:user).permit(:title, :start, :end, :allday ))
+    
+    if user.allday = true
       puts "○"
     else
       puts "none"
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(params.require(:user).permit(:name, :email, :age, :introduction))
+    if @user.update(params.require(:user).permit(:title, :start, :end, :allday ))
       flash[:notice] = "「ユーザーID:#{@user.id}」の情報を更新しました"
       redirect_to :users
     else

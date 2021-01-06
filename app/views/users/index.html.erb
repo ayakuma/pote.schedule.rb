@@ -1,4 +1,4 @@
-<h2>TEST : Rails課題スケジュール</h2>
+<h2>TEST : スケジュール一覧</h2>
 
 <% if flash.notice %>
   <p class="notice"><%= flash.notice%></p>
@@ -22,10 +22,10 @@
         <% @users.each do |user| %>
             <tr>
                 <td><%= user.id %></td>
-                <td><%= user.name %></td>
-                <td><%= user.diary %></td>
-                <td><%= user.enddate %></td>
-                <td><%= user.email %></td>
+                <td><%= user.title %></td>
+                <td><%= user.start %></td>
+                <td><%= user.end %></td>
+                <td><%= user.allday %></td>
                 <td><%= user.updated_at.to_s(:datetime_jp) %></td>
                 <td><%= link_to "参照", user%></td>
                 <td><%= link_to "編集", [:edit, user] %></td>
