@@ -3,29 +3,31 @@
 <%= form_for @user do |f| %>
     <table>
         <tr>
-            <th><%= f.label :title ,"名前" %></th>
-            <td><%= f.text_field :title %></td>
+            <th><%= f.label :title ,"タイトル" %></th>
+            <td><%= f.text_field :title, class:"field" %></td>
         </tr>
         <tr>
             <th><%= f.label :start ,"開始日" %></th>
-            <td><%= f.text_field :start %></td>
+            <td><%= f.date_field :start, class:"field" %></td>
         </tr>
         <tr>
             <th><%= f.label :end ,"終了日" %></th>
-            <td><%= f.text_field :end %></td>
+            <td><%= f.date_field :end, class:"field" %></td>
         </tr>
         <tr>
             <th><%= f.label :allday ,"終日" %></th>
-            <td><%= f.text_area :allday %></td>
+            <td class="all"><%= f.check_box :allday %>
+            <p class="checktext">終日の場合はチェックを入れています</p></td>
+        </tr>
+        <tr>
+            <th><%= f.label :introduction ,"スケジュールメモ" %></th>
+            <td><%= f.text_area :introduction, class:"memo" %></td>
         </tr>
     </table>
     <div>
         <ul>
-            <li><%= f.submit "編集を完了する" %></li>
-            <li><%= link_to "ユーザー情報一覧に戻る", :users %></li>
+            <li><%= f.submit "スケジュールの編集を完了する" %></li>
+            <li><%= link_to "スケジュール一覧に戻る", :users, class:"textdeco" %></li>
         </ul>
     </div>
 <% end %>
-
-
-rails g model Schedule title:string start:date start:date allday:boolean

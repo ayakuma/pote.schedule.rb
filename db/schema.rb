@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_063211) do
+ActiveRecord::Schema.define(version: 2021_01_06_091434) do
 
   create_table "posts", force: :cascade do |t|
     t.string "content"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2021_01_06_063211) do
     t.datetime "diary"
     t.datetime "enddate"
     t.string "title"
-    t.date "start"
-    t.date "end"
+    t.datetime "start"
+    t.datetime "end"
     t.boolean "allday"
   end
 

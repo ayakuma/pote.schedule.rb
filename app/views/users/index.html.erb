@@ -1,4 +1,4 @@
-<h2>TEST : スケジュール一覧</h2>
+<h2>スケジュール一覧</h2>
 
 <% if flash.notice %>
   <p class="notice"><%= flash.notice%></p>
@@ -13,7 +13,7 @@
             <th>終了日</th>
             <th>終日</th>
             <th>スケジュール更新日時</th>
-            <th>参照</th>
+            <th>確認</th>
             <th>編集</th>
             <th>削除</th>
         </tr>
@@ -23,46 +23,23 @@
             <tr>
                 <td><%= user.id %></td>
                 <td><%= user.title %></td>
-                <td><%= user.start %></td>
-                <td><%= user.end %></td>
-                <td><%= user.allday %></td>
+                <td><%= user.start.strftime('%Y月%m日%d日') %></td>
+                <td><%= user.end.strftime('%Y月%m日%d日') %></td>
+                <td><% if user.allday %>
+                    <strong>○</strong>
+                  <% end %></td>
                 <td><%= user.updated_at.to_s(:datetime_jp) %></td>
-                <td><%= link_to "参照", user%></td>
-                <td><%= link_to "編集", [:edit, user] %></td>
-                <td><%= link_to "削除", user, method: :delete, data:{confirm:"本当に削除しますか？"} %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
-
-<h2>投稿一覧</h2>
-
-<table> 
-    <thead>
-        <tr>
-            <th>投稿内容</th>
-            <th>更新日時</th>
-            <th>投稿日時</th>
-            <th>投稿者(User_id)</th>
-            <th>参照</th>
-            <th>編集</th>
-            <th>削除</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @posts.each do |post| %>
-            <tr>
-                <td><%= post.content %></td>
-                <td><%= post.updated_at.to_s(:datetime_jp) %></td>
-                <td><%= post.created_at.to_s(:datetime_jp) %></td>
-                <td><%= post.user_id %></td>
-                <td><%= link_to "参照", post %></td>
-                <td><%= link_to "編集", [:edit,post] %></td>
-                <td><%= link_to "削除", post, method: :delete, data:{confirm:"本当に削除しますか？"}%></td>
+                <td><%= link_to "確認", user, class:"textdeco"%></td>
+                <td><%= link_to "編集", [:edit, user], class:"textdeco" %></td>
+                <td><%= link_to "削除", user, method: :delete, data:{confirm:"本当に削除しますか？"}, class:"textdeco" %></td>
             </tr>
         <% end %>
     </tbody>
 </table>
 
 
-<p><%= link_to "ユーザー新規登録", :new_user %></p>
+<p>
+<%= link_to "スケジュール新規登録", :new_user , class:"textdeco"%>
+</p>
+
+<% content_for(:sum, "スケジュール合計：#{@count} ") %>
