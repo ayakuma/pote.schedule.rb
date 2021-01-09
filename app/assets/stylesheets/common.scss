@@ -2,30 +2,43 @@ header{
   width: 100%;
   padding: 15px;
   margin-bottom: 30px;
-  border-bottom: 7px solid orange;
+  background-color: #C53023;
+  color: #fff;
 }
 
 footer{
   width: 100%;
   padding: 15px;
   margin-top: 30px;
-  border-top: 7px solid orange;
+  background-color: #C53023;
+  color: #fff;
 }
 
-.partial {
-  border: 1px solid red;
-  padding: 15px;
+body {
+  margin: 0;
 }
 
+.main_container{
+  margin: 50px 15px;
+}
+
+
+table {
+  border-collapse: collapse;
+  border:1px solid #333;
+}
 
 table th {
-  background-color: #fbc25b;
+  background-color: #FFDFDF;
   padding: 10px 20px;
+  border:1px solid #333;
 }
 
 table td {
-  background-color: #f9ecd5;
+  background-color: #F9EAE9;
   padding: 10px 20px;
+  border:1px solid #333;
+
 }
 
 .notice {
@@ -33,7 +46,27 @@ table td {
   padding: 5px;
 }
 
-.posts-content {
+ul {
+  list-style: none;
+}
+
+.textdeco{
+  text-decoration: none;
+}
+.memo {
   width: 350px;
   height: 200px;
+}
+
+.field {
+  width: 350px;
+  height: 30px;
+}
+
+.all {
+  text-align: center;
+}
+
+.checktext {
+  margin: 0;
 }

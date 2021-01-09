@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users =User.all
-    @posts =Post.all
+    @count = User.where(@user).count
   end
 
   def new
@@ -9,15 +9,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:name, :email, :age, :introduction ,:diary, :enddate ))
-    if check_box = 1
-      puts "○"
-    else
-      puts ""
-    end
-
+    @user = User.new(params.require(:user).permit(:title, :start, :end, :allday, :introduction ))
     if @user.save
-      flash[:notice] = "ユーザーを新規登録しました"
+      flash[:notice] = "スケジュールを新規登録しました"
       redirect_to :users
     else
       render "new"
@@ -26,8 +20,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post = Post.new
-    @posts = @user.posts
   end
 
   def edit
@@ -36,8 +28,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(params.require(:user).permit(:name, :email, :age, :introduction))
-      flash[:notice] = "「ユーザーID:#{@user.id}」の情報を更新しました"
+    if @user.update(params.require(:user).permit(:title, :start, :end, :allday, :introduction ))
+      flash[:notice] = "スケジュールID：#{@user.id}の情報を更新しました"
       redirect_to :users
     else
       render "edit"
@@ -47,9 +39,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "ユーザーを削除しました"
+    flash[:notice] = "スケジュールID：#{@user.id}を削除しました"
     redirect_to :users
   end
-
-  
 end

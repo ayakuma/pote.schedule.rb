@@ -1,69 +1,39 @@
-<h2>ユーザー詳細</h2>
+<h2>スケジュール詳細</h2>
 
 <table>
+
     <tr>
-        <th>名前</th>
-        <td><%= @user.name %></td>
+        <th>タイトル</th>
+        <td><%= @user.title %></td>
     </tr>
     <tr>
-        <th>メールアドレス</th>
-        <td><%= @user.email %></td>
+        <th>開始日</th>
+        <td><%= @user.start.strftime('%Y月%m日%d日') %></td>
     </tr>
     <tr>
-        <th>年齢</th>
-        <td><%= @user.age %></td>
+        <th>終了日</th>
+        <td><%= @user.end.strftime('%Y月%m日%d日') %></td>
     </tr>
     <tr>
-        <th>一言紹介</th>
+        <th>終日</th>
+        <td><% if @user.allday %>    <strong>○</strong>    <% end %> </td> 
+
+    </tr>
+    <tr>
+        <th>投稿日時</th>
+        <td><%= @user.created_at.to_s(:datetime_jp) %></td>
+    </tr>
+    <tr>
+        <th>スケジュールメモ</th>
         <td><%= @user.introduction %></td>
+
     </tr>
 </table>
-
-
-<h2>投稿一覧</h2>
-
-<table> 
-    <thead>
-        <tr>
-            <th>投稿内容</th>
-            <th>更新日時</th>
-            <th>投稿日時</th>
-            <th>投稿者(User_id)</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @posts.each do |post| %>
-            <tr>
-                <td><%= post.content %></td>
-                <td><%= post.updated_at.to_s(:datetime_jp) %></td>
-                <td><%= post.created_at.to_s(:datetime_jp) %></td>
-                <td><%= post.user_id %></td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
-
-<h2>新規投稿</h2>
-
-<%= form_for @post do |f| %>
-    <table>
-        <tr>
-            <th><%= f.label :content, "投稿内容" %></th>
-            <td><%= f.text_area :content, class:"posts-content" %></td>
-        </tr>
-    </table>
-    <%= f.hidden_field :user_id, value: @user.id %>
-    <div>
-        <ul>
-            <li><%= f.submit "投稿を完了する"%></li>
-        </ul>
-    </div>
-<% end %>
-
 
 <div>
     <ul>
-        <li><%= link_to "ユーザー情報一覧に戻る", :users %></li>
+        <li><%= link_to "スケジュール一覧に戻る", :users, class:"textdeco" %></li>
+        <li><%= link_to "スケジュールを編集する", [:edit, @user], class:"textdeco" %></li>
+        <li><%= link_to "スケジュールを削除", @user, method: :delete, data:{confirm:"本当に削除しますか？"}, class:"textdeco" %></li>
     </ul>
 </div>
